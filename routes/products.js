@@ -2,15 +2,21 @@ let express = require('express');
 let router = express.Router();
 let shoppingCartService = require('../services/shopping-cart');
 let Product = require('../models/product.js')
+let ProductService = require('../services/product.js')
 
 
-/* GET products listing. */
+
+
+/* GET all products */
 router.get('/', function(req, res, next) {
-  cartId = req.cookies.cartId;
+  let cartId = req.cookies.cartId;
   shoppingCartService.getShoppingCart(cartId);
   res.header("Content-Type", "application/json");
-  products = [];
-  res.send(JSON.stringify(products));
+  ProductService.getAllProducts().then(function(products){
+    res.send(JSON.stringify(products));
+  }).catch(function(err){
+    res.send('Error trying to get products. We\'re sorry.');
+  });
 });
 
 module.exports = router;
