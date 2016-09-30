@@ -1,7 +1,7 @@
 let mongoose = require('mongoose');
 
 let CommerceItemSchema = mongoose.Schema({
-  product_id: {type: Number, ref: 'Product' },
+  product_id: {type: String, ref: 'Product' },
   quantity: Number,
   amount: Number
 });

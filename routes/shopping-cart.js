@@ -12,13 +12,7 @@ router.get('/', function(req, res, next){
   let shoppingCart;
   res.header('Content-Type', 'application/json');
   res.status(STATUS_OK);
-  ShoppingCartService.getShoppingCart(cartId).then(function(resp){
-    if(resp == null){
-      shoppingCart = new ShoppingCart();
-      ShoppingCartService.updateShoppingCart(cartId, shoppingCart);
-    } else{
-      shoppingCart = resp;
-    }
+  ShoppingCartService.getShoppingCart(cartId).then(function(shoppingCart){
     res.send(shoppingCart);
   }).catch(function(err){
     console.error(err);
