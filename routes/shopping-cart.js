@@ -38,9 +38,15 @@ router.post('/items/:id', function(req, res, next) {
 /* DELETE item, i.e., remove item from the session's shopping cart */
 router.delete('/items/:id', function(req, res, next) {
   let itemId = req.params.id;
-  ShoppingCartService.remove(itemId);
+  let cartId = req.cookies.cartId;
   res.status(STATUS_OK);
-  res.send();
+  ShoppingCartService.remove(cartId, itemId).then(function(){
+    res.send();
+  }).catch(function(err){
+    console.error(err);
+    res.status(STATUS_INTERNAL_ERROR);
+    res.send('Error removing item from your cart. We\'re sorry');
+  });
 })
 
 module.exports = router;
