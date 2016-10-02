@@ -7,7 +7,7 @@ let ProductService = require('../services/product.js')
 
 
 
-/* GET all products */
+/* GET all products from the store*/
 router.get('/', function(req, res, next) {
   let cartId = req.cookies.cartId;
   ShoppingCartService.getShoppingCart(cartId);

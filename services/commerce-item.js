@@ -4,10 +4,8 @@ var bluebird = require('bluebird');
 let CommerceItemService = function(){
 }
 
-CommerceItemService.prototype.getCommerceItemByProductId = function (productId) {
-  console.log('getCommerceItemByProductId', productId);
-  return CommerceItem.find({product_id: productId}).then(function(res) {
-    console.log('getCommerceItemByProductId result:', res);
+CommerceItemService.prototype.getCommerceItemById = function (commerceItemId) {
+  return CommerceItem.find({_id: commerceItemId}).then(function(res) {
     return res;
   });
 };

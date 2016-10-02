@@ -7,7 +7,7 @@ ProductService.prototype.getAllProducts = function(){
 };
 
 ProductService.prototype.getProductById = function(productId){
-  return Product.find({_id: productId}).limit(1);
+  return Product.find({_id: productId});
 }
 
 module.exports = new ProductService();
